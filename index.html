@@ -202,73 +202,29 @@ textarea.form-input{resize:vertical}
 <section class="rsvp" id="rsvp">
   <div class="eyebrow">ПОДТВЕРЖДЕНИЕ</div>
   <h2>Будете с нами?</h2>
-  <p class="lead">Пожалуйста, сообщите нам о своём присутствии.</p>
+  <p class="lead">Пожалуйста, сообщите нам о своём присутствии — это займёт всего минуту.</p>
 
-  <div class="rsvp-choice" id="rsvpChoice">
-    <button class="btn choice-btn" type="button" id="willAttendBtn">Я С УДОВОЛЬСТВИЕМ ПРИДУ ❤️</button>
-    <button class="btn choice-btn secondary" type="button" id="cannotAttendBtn">К СОЖАЛЕНИЮ, НЕ СМОГУ</button>
+  <div style="max-width:720px;margin:34px auto 0;display:grid;gap:16px;">
+    <button type="button" id="openRsvpForm" class="btn" style="width:100%;min-height:64px;font-size:16px;letter-spacing:.12em;">
+      Я С УДОВОЛЬСТВИЕМ ПРИДУ ❤️
+    </button>
+    <button type="button" id="openRsvpForm2" class="btn secondary" style="width:100%;min-height:64px;font-size:16px;letter-spacing:.12em;">
+      К СОЖАЛЕНИЮ, НЕ СМОГУ
+    </button>
   </div>
 
-  <form class="rsvp-form" id="attendForm" hidden>
-    <div class="form-label">Ваше имя <span>*</span></div>
-    <input class="form-input" id="guestName" type="text" maxlength="60"
-           placeholder="Введите имя и фамилию" autocomplete="name" required>
-
-    <div class="form-label">Сколько человек придёт из вашей семьи? <span>*</span></div>
-    <select class="form-input" id="guestCount" required>
-      <option value="" selected disabled>Выберите количество</option>
-      <option value="1">1 человек</option><option value="2">2 человека</option>
-      <option value="3">3 человека</option><option value="4">4 человека</option>
-      <option value="5">5 человек</option><option value="6">6 человек</option>
-      <option value="7">7 человек</option><option value="8">8 человек</option>
-      <option value="9">9 человек</option><option value="10">10 человек</option>
-    </select>
-
-    <button class="btn form-submit" type="submit">ПОДТВЕРДИТЬ ❤️</button>
-  </form>
-
-  <form class="rsvp-form" id="declineForm" hidden>
-    <div class="decline-message">
-      <div class="decline-title">Нам очень жаль, что Вы не сможете быть с нами 🥺</div>
-      <p>Но мы обязательно почувствуем Вашу поддержку в этот особенный день.</p>
-    </div>
-
-    <div class="form-label">Ваше имя <span>*</span></div>
-    <input class="form-input" id="declineName" type="text" maxlength="60"
-           placeholder="Введите имя и фамилию" autocomplete="name" required>
-
-    <div class="form-label">Оставьте нам тёплое пожелание ❤️</div>
-    <textarea class="form-input" id="declineWish" maxlength="300"
-              placeholder="Ваше пожелание молодожёнам..." rows="4"></textarea>
-
-    <button class="btn form-submit" type="submit">ОТПРАВИТЬ ПОЖЕЛАНИЕ ✦</button>
-  </form>
-
-  <div class="form-success" id="formSuccess" hidden></div>
-
-  <div class="guest-list">
-    <div class="small">БУДЕТ С НАМИ</div>
-    <strong class="big-date"><span id="guestTotal">0</span> человек</strong>
-    <div class="guest-table-wrap">
-      <table class="guest-table">
-        <thead><tr><th>№</th><th>Имя</th><th>Гостей</th></tr></thead>
-        <tbody id="guestTableBody"></tbody>
-      </table>
-      <p class="guest-empty" id="guestEmpty">Список пока пуст ❤️</p>
-    </div>
-  </div>
-
-  <div class="guest-list">
-    <div class="small">ПЕРЕДАЮТ ТЁПЛЫЕ СЛОВА</div>
-    <div class="guest-table-wrap">
-      <table class="guest-table">
-        <thead><tr><th>№</th><th>Имя</th><th>Пожелание</th></tr></thead>
-        <tbody id="declineTableBody"></tbody>
-      </table>
-      <p class="guest-empty" id="declineEmpty">Пока нет сообщений ❤️</p>
-    </div>
+  <div style="max-width:720px;margin:28px auto 0;padding:20px 22px;border:1px solid rgba(90,75,60,.22);border-radius:22px;background:rgba(255,255,255,.35);text-align:center;">
+    <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:8px;">Онлайн-подтверждение</div>
+    <div style="font-size:17px;line-height:1.6;">Ответы сохраняются онлайн, поэтому мы увидим их независимо от того, с какого телефона гость заполнит анкету.</div>
   </div>
 </section>
+
+<div id="rsvpModal" hidden style="position:fixed;inset:0;z-index:9999;background:rgba(38,31,25,.58);backdrop-filter:blur(5px);padding:18px;overflow:auto;">
+  <div style="position:relative;width:min(760px,100%);margin:24px auto 40px;background:#f7f2ea;border-radius:26px;box-shadow:0 25px 80px rgba(0,0,0,.25);overflow:hidden;">
+    <button type="button" id="closeRsvpForm" aria-label="Закрыть" style="position:absolute;right:12px;top:12px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid rgba(70,60,50,.25);background:rgba(255,255,255,.9);font-size:24px;cursor:pointer;">×</button>
+    <iframe src="https://form.jotform.com/262590707948066" title="RSVP — Эрдэни & Лидия" style="display:block;width:100%;height:760px;border:0;" scrolling="auto"></iframe>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="small">С любовью</div>
@@ -335,109 +291,26 @@ function firstTouchMusic(){
   document.addEventListener(evt, firstTouchMusic, {passive:true});
 });
 
-const willAttendBtn = document.getElementById('willAttendBtn');
-const cannotAttendBtn = document.getElementById('cannotAttendBtn');
-const rsvpChoice = document.getElementById('rsvpChoice');
-const attendForm = document.getElementById('attendForm');
-const declineForm = document.getElementById('declineForm');
-const guestTableBody = document.getElementById('guestTableBody');
-const declineTableBody = document.getElementById('declineTableBody');
-const guestTotal = document.getElementById('guestTotal');
-const guestEmpty = document.getElementById('guestEmpty');
-const declineEmpty = document.getElementById('declineEmpty');
+const rsvpModal = document.getElementById('rsvpModal');
+const openRsvpForm = document.getElementById('openRsvpForm');
+const openRsvpForm2 = document.getElementById('openRsvpForm2');
+const closeRsvpForm = document.getElementById('closeRsvpForm');
 
-function read(key){
-  try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch(e){ return []; }
+function openRsvp(){
+  rsvpModal.hidden=false;
+  document.body.style.overflow='hidden';
 }
-function write(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
-
-function renderTables(){
-  const guests = read('weddingGuests');
-  const declines = read('weddingDeclines');
-  guestTableBody.innerHTML = '';
-  declineTableBody.innerHTML = '';
-  let total = 0;
-
-  guests.forEach((g,i)=>{
-    const tr=document.createElement('tr');
-    [i+1,g.name,g.count].forEach((v,j)=>{
-      const td=document.createElement('td');
-      td.textContent=v;
-      tr.appendChild(td);
-    });
-    guestTableBody.appendChild(tr);
-    total += Number(g.count)||0;
-  });
-
-  declines.forEach((d,i)=>{
-    const tr=document.createElement('tr');
-    [i+1,d.name,d.wish || 'Тёплые пожелания ❤️'].forEach(v=>{
-      const td=document.createElement('td'); td.textContent=v; tr.appendChild(td);
-    });
-    declineTableBody.appendChild(tr);
-  });
-
-  guestTotal.textContent=String(total);
-  guestEmpty.hidden=guests.length>0;
-  declineEmpty.hidden=declines.length>0;
+function closeRsvp(){
+  rsvpModal.hidden=true;
+  document.body.style.overflow='';
 }
-renderTables();
-
-willAttendBtn.addEventListener('click',()=>{
-  rsvpChoice.hidden=true;
-  attendForm.hidden=false;
-  declineForm.hidden=true;
-});
-cannotAttendBtn.addEventListener('click',()=>{
-  rsvpChoice.hidden=true;
-  attendForm.hidden=true;
-  declineForm.hidden=false;
-});
-
-attendForm.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  const name=document.getElementById('guestName').value.trim();
-  const count=Number(document.getElementById('guestCount').value);
-  if(!name || !count) return;
-
-  const rows=read('weddingGuests');
-  const existing=rows.find(x=>x.name.toLowerCase()===name.toLowerCase());
-  if(existing) existing.count=count; else rows.push({name,count});
-  write('weddingGuests',rows);
-  renderTables();
-
-  const s=document.getElementById('formSuccess');
-  s.innerHTML=`❤️ <b>${name}</b>, спасибо! Вы подтвердили присутствие. От вашей семьи придёт <b>${count}</b> ${count===1?'человек':'человека'}.`;
-  s.hidden=false;
-  attendForm.hidden=true;
-  s.scrollIntoView({behavior:'smooth',block:'center'});
-});
-
-declineForm.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  const name=document.getElementById('declineName').value.trim();
-  const wish=document.getElementById('declineWish').value.trim();
-  if(!name) return;
-
-  const rows=read('weddingDeclines');
-  const existing=rows.find(x=>x.name.toLowerCase()===name.toLowerCase());
-  if(existing) existing.wish=wish; else rows.push({name,wish});
-  write('weddingDeclines',rows);
-  renderTables();
-
-  const s=document.getElementById('formSuccess');
-  s.innerHTML=`💌 Спасибо, <b>${name}</b>! Ваши тёплые слова обязательно будут с нами.`;
-  s.hidden=false;
-  declineForm.hidden=true;
-  s.scrollIntoView({behavior:'smooth',block:'center'});
-});
+openRsvpForm.addEventListener('click',openRsvp);
+openRsvpForm2.addEventListener('click',openRsvp);
+closeRsvpForm.addEventListener('click',closeRsvp);
+rsvpModal.addEventListener('click',(e)=>{ if(e.target===rsvpModal) closeRsvp(); });
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !rsvpModal.hidden) closeRsvp(); });
 </script>
 
-<!-- JOTFORM_RSVP_EMBED -->
-<section id="rsvp-jotform" style="margin:40px auto;max-width:760px;padding:0 16px;">
-  <div style="background:rgba(255,255,255,.92);border-radius:24px;padding:10px;box-shadow:0 10px 35px rgba(0,0,0,.10);">
-    <iframe src="https://form.jotform.com/262590707948066" title="RSVP — Эрдэни & Лидия" style="width:100%;min-height:760px;border:0;border-radius:18px;" scrolling="auto"></iframe>
-  </div>
-</section>
+
 </body>
 </html>
